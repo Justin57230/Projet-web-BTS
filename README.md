@@ -1,5 +1,6 @@
 # Projet-web-BTS
 
+- 1. Architecture hierarchique du projet
 ```markdown
 - /public
   - /css

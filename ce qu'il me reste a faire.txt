@@ -10,12 +10,7 @@
                                                                             
 
 Différente page :
-    -page d'accueil (index.php)
-        --> présentation du site
-        --> liens vers la page de connection/inscription
-        --> news du site
-        --> voir le règlement du site
-        --> 
+
     -page du fils (fils.php)
         --> possibilité de voir un 'pour toi'
         --> possibilité de voir un abonnement
@@ -30,10 +25,7 @@ Différente page :
         --> possibilité de créer un groupe avec plusieur membres
             --> possiblité de quitter un groupe
             --> possibilité de supprimer un groupe
-        --> 
-    -page d'inscription/ de connection
-        --> possibilité de s'inscrire
-        --> possibilité de se connecter
+        
     -page de profil utilisateur
         --> possibilité de modifier son profil (nom, prénom, mail, pp, etc...) si l'on est sur son profil
             --> possibilité de changer de mot de passe

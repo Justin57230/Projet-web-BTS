@@ -1,0 +1,84 @@
+header {
+    background-color: var(--button-bg);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 50px; /* Ajustez la taille de votre logo selon vos besoins */
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+.header-btn {
+    text-decoration: none;
+    color: var(--color);
+    font-weight: bold;
+    padding: 25px;
+}
+
+.header-btn:hover {
+    background-color: var(--button-hover-bg);
+    /* border-radius: 32px; */
+    height: 100%;
+}
+
+.profil-menu {
+    position: relative;
+}
+
+.pp-container img {
+    width: 50px; /* Ajustez la taille de votre photo de profil selon vos besoins */
+    height: auto;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.menu-deroulant {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: var(--container-background);
+    border: var(--input-border);
+    border-radius: var(--container-border-radius);
+    box-shadow: var(--container-box-shadow);
+    padding: 10px;
+}
+
+.menu-deroulant a {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.menu-deroulant a:last-child {
+    margin-bottom: 0;
+}
+
+.menu-deroulant a:hover {
+    color: var(--button-hover);
+}
+
+a.se-connecter {
+    color: var(--link-color);
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid var(--link-color);
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+a.se-connecter:hover {
+    background-color: var(--link-hover-color);
+    color: #fff; /* Vous pouvez ajuster la couleur du texte au survol si nécessaire */
+}

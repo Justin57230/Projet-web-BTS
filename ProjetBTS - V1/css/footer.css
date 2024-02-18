@@ -1,0 +1,55 @@
+/* footer.css */
+
+footer {
+    align-self: center; /* Centre le footer par rapport au corps */
+}
+
+.footer-container {
+    background-color: var(--button-bg);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; /* Espacement entre les sections */
+    align-items: center; /* Centrer le contenu verticalement */
+    margin: 0 auto; /* Centrer le contenu horizontalement en utilisant margin:auto */
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column; /* Utilise une disposition en colonne pour aligner de droite à gauche */
+    align-items: center; /* Aligne les sections horizontalement de droite à gauche */
+}
+
+.footer-link {
+    color: #000; /* Couleur du texte en noir */
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #004080; /* Couleur du texte plus foncée au survol */
+    text-decoration: underline;
+}
+
+h3 {
+    color: #000; /* Noir pour les titres */
+}
+
+ul {
+    list-style: none; /* Enlever les puces */
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+}
+
+.social-icon {
+    color: #000; /* Noir pour les icônes sociales */
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.social-icon img {
+    width: 30px; /* Ajustez la taille de vos icônes sociales selon vos besoins */
+    height: auto;
+    padding: 3px 0;
+}

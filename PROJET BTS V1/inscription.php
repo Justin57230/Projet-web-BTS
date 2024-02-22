@@ -25,21 +25,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $message = "Les mots de passe ne correspondent pas.";
         }
 
-        // Vérifier si l'email est déjà lié à un compte
-        $check_email_query = "SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER('$email')";
-        $check_email_result = $conn->query($check_email_query);
+       // Vérifier si le email est déjà lié à un compte
+    $check_email_query = "SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER('$email')";
+    $check_email_result = $conn->query($check_email_query);
 
+    // Check if the query execution was successful
+    if ($check_email_result !== false) {
+        // Check if there are rows in the result set
         if ($check_email_result->num_rows > 0) {
             $message = "Cet email est déjà lié à un compte.";
         }
-
-        // Vérifier si le pseudo existe déjà
-        $check_pseudo_query = "SELECT * FROM utilisateurs WHERE LOWER(pseudo) = LOWER('$pseudo')";
-        $check_pseudo_result = $conn->query($check_pseudo_query);
-
-        if ($check_pseudo_result->num_rows > 0) {
-            $message = "Ce pseudo est déjà utilisé. Veuillez en choisir un autre.";
-        }
+    } else {
+        // Handle the case where the query execution failed
+        $message = "Erreur lors de la vérification de l'email.";
+    }
 
         // Si aucune erreur, procéder à l'inscription
         if (empty($message)) {

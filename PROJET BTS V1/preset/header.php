@@ -45,13 +45,14 @@ if (isset($_SESSION['utilisateur_connecte']) && $_SESSION['utilisateur_connecte'
 <body>
     <header>
         <div class="logo-container">
-            <img src="chemin/vers/votre/logo.jpg" alt="Logo">
+            <img src="./media/logo.png" alt="Logo">
         </div>
         <nav>
             <ul>
                 <li><a class="header-btn" href="index.php">Accueil</a></li>
                 <li><a class="header-btn" href="pourtoi.php">Pour Toi</a></li>
                 <li><a class="header-btn" href="abonnement.php">Abonnement</a></li>
+                <li><a class="header-btn" href="poste.php">Poster</a></li>
             </ul>
         </nav>
         <div class="profil-menu">

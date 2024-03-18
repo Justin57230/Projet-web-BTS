@@ -1,0 +1,83 @@
+body {
+    background-color: var(--background-color);
+    color: var(--color);
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.post-title {
+    color: black;
+    text-align: center;
+}
+
+.post-form {
+    width: var(--container-max-width);
+    background-color: var(--container-background);
+    border-radius: var(--container-border-radius);
+    box-shadow: var(--container-box-shadow);
+    padding: 20px;
+    margin: 20px auto;
+}
+
+.post-label {
+    padding: 10px;
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color);
+}
+
+.post-content {
+    height: 250px;
+    width: 100%;
+    padding: 8px;
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.post-media-label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color);
+}
+
+.post-media {
+    display: block;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.post-button {
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--input-border-radius);
+    cursor: pointer;
+}
+
+.post-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.success-message {
+    color: var(--success-message-color);
+}
+
+.error-message {
+    color: var(--error-message-color);
+    background-color: var(--error-message-background);
+    padding: var(--error-message-padding);
+    font-weight: var(--error-message-strong-font-weight);
+}
+
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--link-hover-color);
+}

@@ -1,0 +1,21 @@
+- css
+     --> toute les pages CSS
+- media
+     --> tout les médias de l'application
+- preset
+     --> footer.php
+     --> header.php
+     --> deconnexion.php
+- publication_media
+     --> toute les publications de l'application
+- sql
+     --> communauteams.sql
+- connexion.php
+- db.php
+- edit_profile.php
+- index.php
+- inscription.php
+- like.php
+- post.php
+- profil.php
+

@@ -1,0 +1,85 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: var(--container-background);
+    padding: 40px;
+    border-radius: var(--container-border-radius);
+    box-shadow: var(--container-box-shadow);
+    max-width: var(--container-max-width);
+    min-width: var(--container-min-width);
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+}
+
+.submit-button {
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    padding: 10px;
+    border: none;
+    border-radius: var(--input-border-radius);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.submit-button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.success-message {
+    color: var(--success-message-color);
+    font-weight: bold;
+    margin-top: 16px;
+}
+
+.link {
+    margin-top: 16px;
+}
+
+.link a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.link a:hover {
+    text-decoration: underline;
+}
+
+.error-message {
+    color: var(--error-message-color);
+    margin-top: 8px;
+    margin-bottom: 16px;
+    background-color: var(--error-message-background);
+    padding: var(--error-message-padding);
+    border-radius: var(--input-border-radius);
+}
+
+.error-message strong {
+    font-weight: var(--error-message-strong-font-weight);
+}

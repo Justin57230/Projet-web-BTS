@@ -1,0 +1,16 @@
+.changement-flex {
+    display: flex;
+}
+
+.changementprofil {
+    flex: 1;
+    text-align: center;
+}
+
+.input{
+    margin-left: 0%;
+}
+
+.plusImportImage {
+    border: none;
+}

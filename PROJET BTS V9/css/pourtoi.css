@@ -1,0 +1,82 @@
+body {
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    margin: 0; /* Supprime la marge par défaut du corps */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post {
+    width: 100%;
+    background-color: var(--container-background);
+    border-radius: var(--container-border-radius);
+    box-shadow: var(--container-box-shadow);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.post-header .post-picture {
+    border-radius: 50%;
+    margin-right: 10px;
+    max-width: 40px; /* Ajuste la largeur maximale de l'image */
+    height: auto;
+}
+
+.post-header .post-owner-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-owner-info .pseudo {
+    color: var(--color);
+    font-size: 14px;
+}
+
+.post-content {
+    color: var(--color);
+    margin-bottom: 10px;
+}
+
+.post-media {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px; /* Ajoute un espacement en haut du média */
+    border-radius: 5px; /* Ajoute une légère bordure arrondie aux médias */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajoute une légère ombre aux médias */
+}
+
+.post-media.video {
+    width: 100%; /* Ajuste la largeur de la vidéo à 100% */
+}
+
+.post-media img {
+    max-height: 400px; /* Limite la hauteur de l'image */
+}
+
+.like-section {
+    margin-top: 10px;
+}
+
+.like-btn {
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    border: none;
+    border-radius: var(--input-border-radius);
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.like-btn:hover {
+    background-color: var(--button-hover-bg);
+}

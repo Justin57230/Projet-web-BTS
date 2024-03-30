@@ -1,0 +1,49 @@
+.changement-flex {
+    display: flex;
+}
+
+.changementprofil {
+    flex: 1;
+    text-align: center;
+}
+
+.input{
+    margin-left: 0%;
+}
+
+.plusImportImage {
+    border: none;
+}
+
+.supp-compte {
+    text-align: center;
+    padding: 100px 0;
+}
+
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--button-bg);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.supp-compte button:hover {
+        background-color: red;
+    }
+
+.btn-pp {
+    padding-top: 35px;
+}
+
+.titre {
+    text-align: center;
+}

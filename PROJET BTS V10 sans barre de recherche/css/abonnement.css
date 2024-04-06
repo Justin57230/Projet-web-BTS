@@ -1,0 +1,13 @@
+.unsubscribe-btn {
+    background-color: var(--button-bg); /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 8px 16px; /* Espacement intérieur */
+    border-radius: 4px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointeur */
+    margin-left: 10px; /* Marge à gauche */
+}
+
+.unsubscribe-btn:hover {
+    background-color: var(--button-hover-bg); /* Couleur de fond au survol */
+}

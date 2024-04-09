@@ -1,0 +1,153 @@
+body {
+    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    margin: 0; /* Remove default body margin */
+}
+
+.profile-container {
+    background-color: var(--container-background);
+    border-radius: var(--container-border-radius);
+    box-shadow: var(--container-box-shadow);
+    max-width: var(--container-max-width);
+    min-width: var(--container-min-width);
+    margin: 20px auto;
+    padding: 20px;
+}
+
+/* Ajoutez la classe suivante */
+.contenair-profil {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container {
+    background-color: var(--container-background);
+    border-radius: var(--container-border-radius);
+    box-shadow: var(--container-box-shadow);
+    max-width: var(--container-max-width);
+    min-width: var(--container-min-width);
+    padding: 20px;
+}
+
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Larger profile picture for profile information */
+.post-header.profile-info img {
+    border-radius: 50%;
+    margin-right: 10px;
+    max-width: 120px; /* Adjust the max-width as needed for the profile picture in profile information */
+    height: auto;
+}
+
+/* Smaller profile picture  for post headers */
+.post-header.post-info img {
+    padding-top: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    max-width: 40px; /* Adjust the max-width as needed for the profile picture in post headers */
+    height: auto;
+}
+
+.post span {
+    margin-right: 10px;
+    color: var(--color);
+    font-size: 14px; /* Adjust font size as needed */
+}
+
+.post p {
+    color: var(--color);
+    margin-bottom: 10px;
+}
+
+.post img,
+.post video {
+    max-width: 100%; /* La largeur maximale sera celle du conteneur parent */
+    max-height: 400px; /* Ajustez la hauteur maximale selon vos préférences */
+    height: auto;
+    width: auto;
+    margin-bottom: 10px;
+}
+
+
+.like-btn {
+    background-color: var(--button-bg);
+    color: var(--button-color);
+    border: none;
+    border-radius: var(--input-border-radius);
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.like-btn:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.post {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+}
+
+.post-contenue {
+    border: none; /* Enlève la bordure */
+}
+
+.profile-picture {
+    border-radius: 50%;
+    margin-right: 10px;
+    max-width: 220px; /* Ajustez la largeur maximale selon vos préférences */
+    height: auto;
+}
+
+.droite {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-username {
+    font-size: 2em;
+    padding: 5px;
+    font-weight: bold; /* Ajoutez une épaisseur de police si nécessaire */
+}
+
+.profile-created-at {
+    font-size: 0.8em;
+    padding: 5px;
+    color: #888;
+}
+
+
+/* Ajoutez ces styles dans votre fichier CSS */
+
+.edit-profile-btn {
+    background-color: var(--button-bg); /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    padding: 10px 5px; /* Espacement interne du bouton */
+    border: none; /* Supprimez la bordure */
+    border-radius: 5px; /* Ajoutez une bordure arrondie */
+    cursor: pointer; /* Changez le curseur au survol */
+    font-size: 16px; /* Taille de police */
+}
+
+.edit-profile-btn:hover {
+    background-color: var(--button-hover-bg); /* Couleur de fond au survol */
+}
+
+.subscribe-btn {
+    background-color: var(--button-bg); /* Couleur de fond du bouton */
+    color: #fff; /* Couleur du texte du bouton */
+    padding: 10px 5px; /* Espacement interne du bouton */
+    border: none; /* Supprimez la bordure */
+    border-radius: 5px; /* Ajoutez une bordure arrondie */
+    cursor: pointer; /* Changez le curseur au survol */
+    font-size: 16px; /* Taille de police */
+}
+
+.subscribe-btn:hover {
+    background-color: var(--button-hover-bg); /* Couleur de fond au survol */
+}

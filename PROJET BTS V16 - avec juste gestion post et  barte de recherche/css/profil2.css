@@ -1,0 +1,43 @@
+.post-header.profile-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Ajustez la marge inférieure selon vos préférences */
+}
+
+.post-header.profile-header .profile-picture {
+    border-radius: 50%;
+    margin-right: 20px; /* Ajustez la marge à droite selon vos préférences */
+    max-width: 120px; /* Ajustez la largeur maximale selon vos préférences */
+    height: auto;
+}
+
+.post-header.profile-header .droite {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-header.profile-header .profile-username {
+    font-size: 2em;
+    padding: 5px;
+    font-weight: bold; /* Ajoutez une épaisseur de police si nécessaire */
+}
+
+.post-header.profile-header .profile-created-at {
+    font-size: 0.8em;
+    padding: 5px;
+    color: #888;
+}
+
+.post-owner-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.abonne-info {
+    font-size: 14px;
+    color: #888;
+}
+
+.pseudo {
+    font-weight: bold;
+}

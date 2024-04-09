@@ -1,0 +1,19 @@
+                                                                  .o8       
+                                                                 "888       
+  .oooo.   oo.ooooo.  oo.ooooo.       oooo oooo    ooo  .ooooo.   888oooo.  
+ `P  )88b   888' `88b  888' `88b       `88. `88.  .8'  d88' `88b  d88' `88b 
+  .oP"888   888   888  888   888        `88..]88..8'   888ooo888  888   888 
+ d8(  888   888   888  888   888         `888'`888'    888    .o  888   888 
+ `Y888""8o  888bod8P'  888bod8P'          `8'  `8'     `Y8bod8P'  `Y8bod8P' 
+            888        888                                                  
+           o888o      o888o     
+
+-page d'accueil (index.php)
+        --> présentation du site
+        --> liens vers la page de connection/inscription
+        --> news du site
+        --> voir le règlement du site
+
+ -page d'inscription/ de connection
+        --> possibilité de s'inscrire
+        --> possibilité de se connecter

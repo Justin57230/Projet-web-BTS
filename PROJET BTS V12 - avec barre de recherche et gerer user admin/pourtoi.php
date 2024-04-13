@@ -1,7 +1,10 @@
 <?php
+// Démarrer la session
 session_start();
 
+// Vérifier si l'utilisateur est connecté
 if (isset($_SESSION['utilisateur_connecte']) && $_SESSION['utilisateur_connecte']) {
+    // Inclure le fichier de connexion à la base de données et l'en-tête prédéfini
     include 'db.php';
     include './preset/header.php';
 
@@ -27,6 +30,7 @@ if (isset($_SESSION['utilisateur_connecte']) && $_SESSION['utilisateur_connecte'
         exit();
     }
 } else {
+    // Rediriger vers la page d'accueil si l'utilisateur n'est pas connecté
     header("Location: index.php");
     exit();
 }
@@ -169,9 +173,8 @@ if (isset($_SESSION['utilisateur_connecte']) && $_SESSION['utilisateur_connecte'
 </body>
 
 <?php
-
+// Inclure le pied de page prédéfini
 include './preset/footer.php'
-
 ?>
 
 </html>

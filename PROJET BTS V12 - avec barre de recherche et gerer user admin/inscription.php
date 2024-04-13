@@ -1,20 +1,23 @@
-
-
 <?php
+// Configuration pour afficher toutes les erreurs
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+// Inclusion du fichier de connexion à la base de données
 include 'db.php';
 
+// Initialisation des variables
 $message = ""; // Variable pour stocker le message d'erreur
 $inscription_reussie = false; // Variable pour indiquer si l'inscription est réussie
 
+// Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Vérifier si la case à cocher de la clause de consentement est cochée
+    // Vérification si la case à cocher de la clause de consentement est cochée
     if (!isset($_POST['consent'])) {
         $message = "Veuillez accepter les Conditions d'utilisation, la Politique de confidentialité et la Politique relative aux cookies.";
     } else {
+        // Récupération des données du formulaire
         $pseudo = $_POST['pseudo'];
         $nom = $_POST['nom'];
         $prenom = $_POST['prenom'];
@@ -22,40 +25,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mot_de_passe = $_POST['mot_de_passe'];
         $confirmation_mot_de_passe = $_POST['confirmation_mot_de_passe'];
 
-        // Vérifier si le mot de passe et la confirmation sont identiques
+        // Vérification si le mot de passe et la confirmation sont identiques
         if ($mot_de_passe !== $confirmation_mot_de_passe) {
             $message = "Les mots de passe ne correspondent pas.";
         }
 
-       // Vérifier si le email est déjà lié à un compte
-    $check_email_query = "SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER('$email')";
-    $check_email_result = $conn->query($check_email_query);
+        // Vérification si l'email est déjà lié à un compte
+        $check_email_query = "SELECT * FROM utilisateurs WHERE LOWER(email) = LOWER('$email')";
+        $check_email_result = $conn->query($check_email_query);
 
-    // Check if the query execution was successful
-    if ($check_email_result !== false) {
-        // Check if there are rows in the result set
-        if ($check_email_result->num_rows > 0) {
-            $message = "Cet email est déjà lié à un compte.";
+        // Vérification si la requête s'est exécutée avec succès
+        if ($check_email_result !== false) {
+            // Vérification s'il y a des lignes dans le jeu de résultats
+            if ($check_email_result->num_rows > 0) {
+                $message = "Cet email est déjà lié à un compte.";
+            }
+        } else {
+            // Gestion du cas où l'exécution de la requête a échoué
+            $message = "Erreur lors de la vérification de l'email.";
         }
-    } else {
-        // Handle the case where the query execution failed
-        $message = "Erreur lors de la vérification de l'email.";
-    }
 
         // Si aucune erreur, procéder à l'inscription
         if (empty($message)) {
-
+            // Hashage du mot de passe
             $mot_de_passe_hash = hash('sha256', $mot_de_passe);
 
+            // Définition de la photo de profil par défaut
             $photo_profil_default = "./media/default_pp.jpg";
 
+            // Requête d'insertion de l'utilisateur dans la base de données
             $insert_user_query = "INSERT INTO utilisateurs (pseudo, nom, prenom, email, mot_de_passe, photo_profil) VALUES ('$pseudo', '$nom', '$prenom', '$email', '$mot_de_passe_hash', '$photo_profil_default')";
 
+            // Exécution de la requête d'insertion
             if ($conn->query($insert_user_query) === TRUE) {
                 $inscription_reussie = true;
             } else {
                 $message = "Une erreur lors de l'inscription, veuillez réessayer ultérieurement.";
-                $inscription_reussie = false; // Mettez à jour la variable en conséquence
+                $inscription_reussie = false; // Mettre à jour la variable en conséquence
             }
         }
     }
@@ -74,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./css/inscription.css">
     <link rel="stylesheet" href="./css/color.css">
     <link rel="icon" href="./media/logo.png">
-
 </head>
 
 <body>
@@ -83,6 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1>Je m'inscris !</h1>
         </div>
         
+        <!-- Formulaire d'inscription -->
         <form class="form-group" method="post" action="inscription.php">
             <label for="pseudo">Pseudo</label>
             <input type="text" name="pseudo" id="pseudo" required>
@@ -116,9 +122,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </label>
 
+            <!-- Bouton de soumission -->
             <input class="submit-button" type="submit" value="S'inscrire">
         </form>
 
+        <!-- Message de succès -->
         <p class="success-message">
             <?php
             if ($inscription_reussie) {
@@ -127,15 +135,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ?>
         </p>
 
+        <!-- Lien pour la connexion -->
         <p class="link">Déjà inscrit ? <a href="connexion.php">Connectez-vous ici</a></p>
 
+        <!-- Affichage du message d'erreur -->
         <?php
         if ($message !== "") {
             echo "<p class='error-message'>$message</p>";
         }
         ?>
     </div>
-
 </body>
 
 </html>

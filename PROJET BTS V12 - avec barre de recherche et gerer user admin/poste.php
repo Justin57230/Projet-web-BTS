@@ -1,62 +1,76 @@
 <?php
-session_start(); // Démarrer la session
+// Démarrer la session
+session_start();
+
+// Inclure le fichier de connexion à la base de données
 include 'db.php';
 
+// Récupérer l'ID de l'utilisateur à partir de la session, s'il existe
 $utilisateur_id = isset($_SESSION['utilisateur_id']) ? $_SESSION['utilisateur_id'] : '';
 
+// Vérifier si la méthode de requête est POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Check if 'contenu' is set in the $_POST array
+    // Vérifier si le champ 'contenu' est défini dans le tableau $_POST
     $contenu = isset($_POST["contenu"]) ? $_POST["contenu"] : '';
 
-    // Debugging: Print values for checking
+    // Debugging: Afficher les valeurs pour vérification
     echo "utilisateur_id: $utilisateur_id<br>";
     echo "contenu: $contenu<br>";
 
-    // Initialisation de $media_path à NULL
+    // Initialiser $media_path à NULL
     $media_path = null;
 
-// Traitement du téléchargement de fichier (image ou vidéo)
-if (isset($_FILES["media"]) && $_FILES["media"]["error"] == 0) {
-    $allowed_extensions = ['jpeg', 'jpg', 'png', 'mp4', 'mkv', 'mpeg'];
-    
-    $media_extension = strtolower(pathinfo($_FILES["media"]["name"], PATHINFO_EXTENSION));
+    // Traitement du téléchargement de fichier (image ou vidéo) s'il est défini
+    if (isset($_FILES["media"]) && $_FILES["media"]["error"] == 0) {
+        $allowed_extensions = ['jpeg', 'jpg', 'png', 'mp4', 'mkv', 'mpeg'];
+        
+        // Obtenir l'extension du fichier téléchargé et la convertir en minuscules
+        $media_extension = strtolower(pathinfo($_FILES["media"]["name"], PATHINFO_EXTENSION));
 
-    if (in_array($media_extension, $allowed_extensions)) {
-        $media_name = $_FILES["media"]["name"];
-        $media_tmp = $_FILES["media"]["tmp_name"];
+        // Vérifier si l'extension est autorisée
+        if (in_array($media_extension, $allowed_extensions)) {
+            $media_name = $_FILES["media"]["name"];
+            $media_tmp = $_FILES["media"]["tmp_name"];
 
-        // Utilisation de l'ID du post comme nom de fichier
-        $media_path = "publication_media/" . uniqid() . '_' . basename($media_name);
+            // Utiliser l'ID du post comme nom de fichier pour éviter les conflits
+            $media_path = "publication_media/" . uniqid() . '_' . basename($media_name);
 
-        move_uploaded_file($media_tmp, $media_path);
-    } else {
-        echo "Erreur : Format de fichier non supporté. Veuillez télécharger une image (JPEG, PNG, JPG) ou une vidéo (MP4, MKV, MPEG).";
-        exit(); // Stop the script if the file type is not supported
+            // Déplacer le fichier téléchargé vers le répertoire de stockage
+            move_uploaded_file($media_tmp, $media_path);
+        } else {
+            // Afficher une erreur si le format de fichier n'est pas pris en charge
+            echo "Erreur : Format de fichier non supporté. Veuillez télécharger une image (JPEG, PNG, JPG) ou une vidéo (MP4, MKV, MPEG).";
+            exit(); // Arrêter le script si le type de fichier n'est pas pris en charge
+        }
     }
-}
 
-// Debugging: Print media_path for checking
+    // Debugging: Afficher media_path pour vérification
     echo "media_path: $media_path<br>";
 
-    // Utilisation de la fonction COALESCE pour définir la valeur à NULL si $media_path est vide
+    // Utiliser la fonction COALESCE pour définir la valeur à NULL si $media_path est vide
     $media_path = !empty($media_path) ? "'$media_path'" : 'NULL';
 
+    // Vérifier si l'ID de l'utilisateur et le contenu sont définis
     if ($utilisateur_id !== '' && $contenu !== '') {
-        // Insertion des données dans la base de données
+        // Insérer les données dans la base de données
         $sql = "INSERT INTO posts (utilisateur_id, contenu, media_path) VALUES ('$utilisateur_id', '$contenu', $media_path)";
 
+        // Exécuter la requête SQL
         if ($conn->query($sql) === TRUE) {
-            // Redirection vers index.html après la publication réussie
+            // Rediriger vers index.php après la publication réussie
             header("Location: index.php");
-            exit(); // Assure que le script s'arrête ici pour éviter toute exécution supplémentaire
+            exit(); // Assurez-vous que le script s'arrête ici pour éviter toute exécution supplémentaire
         } else {
+            // Afficher une erreur si la requête échoue
             echo "Erreur : " . $sql . "<br>" . $conn->error;
         }
     } else {
+        // Afficher une erreur si l'ID de l'utilisateur ou le contenu n'est pas défini
         echo "Erreur : utilisateur_id ou contenu non défini.";
     }
 }
 
+// Fermer la connexion à la base de données
 $conn->close();
 ?>
 

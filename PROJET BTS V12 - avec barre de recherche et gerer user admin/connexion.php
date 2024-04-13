@@ -1,24 +1,27 @@
 <?php
+// Inclusion du fichier de connexion à la base de données
 include 'db.php';
 
-// Démarrer la session
+// Démarrage de la session
 session_start();
 
 $message = ""; // Variable pour stocker le message d'erreur
 
+// Vérifier si le formulaire de connexion a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pseudo_email = $_POST['pseudo_email'];
     $mot_de_passe = $_POST['mot_de_passe'];
 
-    // Requête pour récupérer les informations de l'utilisateur
+    // Requête pour récupérer les informations de l'utilisateur en fonction du pseudo ou de l'email
     $retrieve_user_query = "SELECT * FROM utilisateurs WHERE pseudo='$pseudo_email' OR email='$pseudo_email'";
     $result = $conn->query($retrieve_user_query);
 
+    // Vérifier si des résultats ont été trouvés
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $mot_de_passe_hash = hash('sha256', $mot_de_passe);
+        $mot_de_passe_hash = hash('sha256', $mot_de_passe); // Hasher le mot de passe pour le comparer
 
-        // Vérifier si le mot de passe correspond
+        // Vérifier si le mot de passe correspond à celui stocké dans la base de données
         if ($mot_de_passe_hash === $row['mot_de_passe']) {
             // Stocker les informations de l'utilisateur dans la session
             $_SESSION['utilisateur_connecte'] = true;
@@ -26,19 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('Location: index.php'); // Redirection vers index.php
             exit; // Assurez-vous de terminer le script après la redirection
         } else {
+            // Message d'erreur si le mot de passe est incorrect
             $message = "Le pseudo, l'email ou le mot de passe est incorrect.";
         }
     } else {
+        // Message d'erreur si aucun utilisateur correspondant n'a été trouvé
         $message = "Le pseudo, l'email ou le mot de passe est incorrect.";
     }
 }
 ?>
-
-<!-- Reste du code reste inchangé -->
-
-<!-- *************************************HTML************************************** -->
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -49,8 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="./css/color.css">
     <link rel="stylesheet" href="./css/connexion.css">
     <link rel="icon" href="./media/logo.png">
-
-
 </head>
 <body>
     <div class="container">
@@ -77,6 +74,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         ?>
     </div>
-
 </body>
 </html>

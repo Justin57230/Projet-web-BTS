@@ -1,9 +1,11 @@
 <?php
+// Inclusion du fichier de connexion à la base de données
 include 'db.php';
 
+// Démarrage de la session
 session_start();
 
-$message = "";
+$message = ""; // Variable pour stocker les messages
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['utilisateur_connecte']) || !$_SESSION['utilisateur_connecte']) {
@@ -13,12 +15,13 @@ if (!isset($_SESSION['utilisateur_connecte']) || !$_SESSION['utilisateur_connect
 
 // Changement de pseudo
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['changer_pseudo'])) {
+    // Récupération des données du formulaire
     $ancien_pseudo = $_POST['ancien_pseudo'];
     $nouveau_pseudo = $_POST['nouveau_pseudo'];
     $confirmation_pseudo = $_POST['confirmation_pseudo'];
 
+    // Vérification de la correspondance entre l'ancien pseudo et celui enregistré dans la base de données
     if ($nouveau_pseudo == $confirmation_pseudo) {
-        // Vérifier l'ancien pseudo
         $result = $conn->query("SELECT pseudo FROM utilisateurs WHERE id_users = " . $_SESSION['utilisateur_id']);
         $row = $result->fetch_assoc();
 
@@ -36,16 +39,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['changer_pseudo'])) {
 
 // Changement de mot de passe
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['changer_mdp'])) {
+    // Récupération des données du formulaire
     $ancien_mdp = $_POST['ancien_mdp'];
     $nouveau_mdp = $_POST['nouveau_mdp'];
     $confirmation_mdp = $_POST['confirmation_mdp'];
 
-    // Vérifier l'ancien mot de passe
+    // Vérification de l'ancien mot de passe
     $result = $conn->query("SELECT mot_de_passe FROM utilisateurs WHERE id_users = " . $_SESSION['utilisateur_id']);
     $row = $result->fetch_assoc();
     $ancien_mdp_hash = hash('sha256', $ancien_mdp);
 
     if ($ancien_mdp_hash == $row['mot_de_passe']) {
+        // Vérification de la correspondance entre les nouveaux mots de passe
         if ($nouveau_mdp == $confirmation_mdp) {
             // Mettre à jour le mot de passe dans la base de données
             $nouveau_mdp_hash = hash('sha256', $nouveau_mdp);
@@ -61,9 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['changer_mdp'])) {
 
 // Suppression du compte
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['supprimer_compte'])) {
+    // Récupération du mot de passe de suppression
     $mdp_suppression = $_POST['mdp_suppression'];
 
-    // Vérifier le mot de passe pour supprimer le compte
+    // Vérification du mot de passe pour supprimer le compte
     $result = $conn->query("SELECT mot_de_passe FROM utilisateurs WHERE id_users = " . $_SESSION['utilisateur_id']);
     $row = $result->fetch_assoc();
     $mdp_suppression_hash = hash('sha256', $mdp_suppression);
@@ -78,7 +84,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['supprimer_compte'])) {
         $message = "Le mot de passe pour la suppression du compte est incorrect.";
     }
 }
-
 
 // Mettre à jour la photo de profil
 if(isset($_POST['valide_pdp'])) {
@@ -157,7 +162,7 @@ if(isset($_POST['valide_pdp'])) {
                 </form>
             </div>
 
-            <!-- Formulaire de changement de mdp -->
+            <!-- Formulaire de changement de mot de passe -->
             <div class="changementprofil">
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <h3>Changer de Mot de Passe</h3>
@@ -203,9 +208,6 @@ if(isset($_POST['valide_pdp'])) {
             </form>
         </div>
     </div>
-
-
-
 
     <?php include('./preset/footer.php'); // Inclure votre pied de page ?>
 

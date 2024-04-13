@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+// Démarrage de la session
 session_start()
 ?>
 
@@ -8,23 +9,25 @@ session_start()
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gérer Utilisateurs</title>
+    <!-- Inclusion des fichiers CSS -->
     <link rel="stylesheet" href="./css/color.css">
     <link rel="stylesheet" href="./css/gerer_utilisateur.css">
 </head>
 <body>
-<?php include("./preset/header.php") ?>
+<?php include("./preset/header.php") // Inclusion de l'en-tête ?>
 
     <div class="container">
         <h1>Gérer Utilisateurs</h1>
         <!-- Formulaire de recherche d'utilisateur -->
         <form action="" method="GET">
             <input type="text" name="search_term" placeholder="Entrez votre recherche..." class="input-text">
+            <!-- Sélection de la catégorie de recherche -->
             <select name="search_category" class="input-text">
                 <option value="nom">Nom</option>
                 <option value="prenom">Prénom</option>
                 <option value="pseudo">Pseudo</option>
                 <option value="email">Email</option>
-                <!-- Ajoutez d'autres options selon vos besoins -->
+                <!-- Vous pouvez ajouter d'autres options selon vos besoins -->
             </select>
             <button type="submit" class="button">Rechercher</button>
         </form>
@@ -42,20 +45,20 @@ session_start()
             </thead>
             <tbody>
                 <?php
-                // Include database connection
+                // Inclusion de la connexion à la base de données
                 include 'db.php';
 
-                // Vérifiez s'il y a une action à effectuer
+                // Vérification s'il y a une action à effectuer
                 if (isset($_GET['action']) && isset($_GET['id'])) {
                     $action = $_GET['action'];
                     $userId = $_GET['id'];
 
-                    // Vérifiez quelle action est demandée
+                    // Vérification de l'action demandée
                     switch ($action) {
                         case 'changer_role':
                             if (isset($_GET['role'])) {
                                 $newRole = $_GET['role'];
-                                // Exécutez la requête SQL pour mettre à jour le rôle de l'utilisateur
+                                // Exécution de la requête SQL pour mettre à jour le rôle de l'utilisateur
                                 $updateQuery = "UPDATE utilisateurs SET role = '$newRole' WHERE id_users = $userId";
                                 if ($conn->query($updateQuery) === TRUE) {
                                     echo "Le rôle de l'utilisateur a été mis à jour avec succès.";
@@ -67,7 +70,7 @@ session_start()
                             }
                             break;
                         case 'supprimer_utilisateur':
-                            // Exécutez la requête SQL pour supprimer l'utilisateur
+                            // Exécution de la requête SQL pour supprimer l'utilisateur
                             $deleteQuery = "DELETE FROM utilisateurs WHERE id_users = $userId";
                             if ($conn->query($deleteQuery) === TRUE) {
                                 echo "L'utilisateur a été supprimé avec succès.";
@@ -80,7 +83,7 @@ session_start()
                     }
                 }
 
-                // Function to get all users
+                // Fonction pour obtenir tous les utilisateurs
                 function getAllUsers() {
                     global $conn;
                     $users = array();
@@ -97,12 +100,12 @@ session_start()
                     return $users;
                 }
 
-                // Function to search users
+                // Fonction pour rechercher des utilisateurs
                 function searchUsers($searchTerm, $searchCategory) {
                     global $conn;
                     $users = array();
 
-                    // Construct the SQL query based on the search category
+                    // Construction de la requête SQL en fonction de la catégorie de recherche
                     $query = "SELECT * FROM utilisateurs WHERE $searchCategory LIKE '%$searchTerm%'";
                     $result = $conn->query($query);
 
@@ -115,13 +118,13 @@ session_start()
                     return $users;
                 }
 
-                // Get all users by default or filtered users if search parameters are provided
+                // Récupération de tous les utilisateurs par défaut ou des utilisateurs filtrés si des paramètres de recherche sont fournis
                 if (isset($_GET['search_term']) && isset($_GET['search_category'])) {
                     $searchTerm = $_GET['search_term'];
                     $searchCategory = $_GET['search_category'];
                     $users = searchUsers($searchTerm, $searchCategory);
 
-                    // Display message if no users found
+                    // Affichage d'un message si aucun utilisateur n'est trouvé
                     if (empty($users)) {
                         echo "<tr><td colspan='6'>Aucun utilisateur trouvé.</td></tr>";
                     }
@@ -129,7 +132,7 @@ session_start()
                     $users = getAllUsers();
                 }
 
-                // Display users in HTML table
+                // Affichage des utilisateurs dans le tableau HTML
                 foreach ($users as $user) {
                     echo "<tr>";
                     echo "<td>{$user['id_users']}</td>";

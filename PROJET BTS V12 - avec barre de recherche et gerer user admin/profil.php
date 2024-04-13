@@ -1,19 +1,18 @@
 <?php
+// Démarrer la session
 session_start();
 
 // Inclure votre connexion à la base de données
 include('db.php');
 
-// Récupérer les informations de l'utilisateur actuel ou du profil demandé
-// ...
-
+// Récupérer l'ID du profil à afficher
 $idProfil = $_SESSION['utilisateur_id'];
 
 // Définir des variables pour éviter les erreurs "Undefined variable"
 $estMonProfil = false;
 $monPseudo = $monProfil = $photoProfil = $pseudoProfil = $profilDemande = null;
 
-// Si c'est le profil de l'utilisateur actuel
+// Vérifier si c'est le profil de l'utilisateur actuel
 if ($_SESSION['utilisateur_id'] == $idProfil) {
     $estMonProfil = true;
 
@@ -58,16 +57,14 @@ $abonnements = $resultatAbonnements->fetch_assoc();
     <link rel="stylesheet" href="./css/color.css">
     <link rel="stylesheet" href="./css/profil.css">
     <link rel="icon" href="./media/logo.png">
-
 </head>
 
 <body>
-
     <?php include('./preset/header.php'); // Inclure votre en-tête ?>
 
     <div class="contenair-profil">
         <?php if ($estMonProfil) : // Vérifier si c'est le profil de l'utilisateur actuel ?>
-        <!-- Afficher la photo du profil, le pseudo, et la date de création du profil -->
+        <!-- Afficher les informations du profil de l'utilisateur actuel -->
         <div class="post-header profile-header">
             <img src="<?php echo $photoProfil; ?>" alt="Ma Photo de Profil" class="profile-picture">
             <div class="droite">
@@ -75,18 +72,17 @@ $abonnements = $resultatAbonnements->fetch_assoc();
                 <!-- Afficher le nombre d'abonnés et d'abonnements -->
                 <span class="abonne-info">Abonnés: <?php echo $abonnes['nb_abonnes']; ?></span>
                 <span class="abonne-info">Abonnements: <?php echo $abonnements['nb_abonnements']; ?></span>
-                <!-- Ajoutez un bouton "Éditer le profil" ici -->
+                <!-- Ajouter un bouton pour éditer le profil -->
                 <button class="edit-profile-btn" onclick="editProfile()">Éditer le profil</button>
             </div>
         </div>
         <?php else : // Profil de quelqu'un d'autre ?>
-        <!-- Afficher la photo du profil, le pseudo, et la date de création du profil du profil demandé -->
+        <!-- Afficher les informations du profil demandé -->
         <div class="post-header profile-header">
             <img src="<?php echo $photoProfil; ?>" alt="Photo de Profil de <?php echo $pseudoProfil; ?>"
                 class="profile-picture">
             <div class="post-owner-info">
                 <span class="pseudo"><?php echo $pseudoProfil; ?></span>
-                <span class="created-at"><?php echo $profilDemande['created_at']; ?></span>
                 <!-- Afficher le nombre d'abonnés et d'abonnements -->
                 <span class="abonne-info">Abonnés: <?php echo $abonnes['nb_abonnes']; ?></span>
                 <span class="abonne-info">Abonnements: <?php echo $abonnements['nb_abonnements']; ?></span>
@@ -95,8 +91,6 @@ $abonnements = $resultatAbonnements->fetch_assoc();
         <?php endif; ?>
     </div>
     <div class="profile-container">
-
-
         <!-- Afficher tous les posts du profil -->
         <?php foreach ($mesPosts as $post) : ?>
         <?php
@@ -107,7 +101,7 @@ $abonnements = $resultatAbonnements->fetch_assoc();
     ?>
 
         <div class="post">
-            <!-- Afficher la photo du profil, le pseudo, et la date du post -->
+            <!-- Afficher les informations du post -->
             <div class="post-header post-info">
                 <img src="<?php echo $infoUtilisateur['photo_profil']; ?>"
                     alt="Photo de Profil de <?php echo $pseudoPosteur; ?>" class="post-picture">
@@ -177,7 +171,7 @@ $abonnements = $resultatAbonnements->fetch_assoc();
 
     function editProfile() {
         window.location.href =
-        'edit_profile.php'; // Remplacez 'edit_profile.php' par le chemin de votre page d'édition de profil
+        'edit_profile.php'; 
     }
     </script>
 
